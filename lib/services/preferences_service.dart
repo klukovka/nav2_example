@@ -12,7 +12,7 @@ class PreferensesService {
   PreferensesService._(this._box);
 
   @factoryMethod
-  Future<PreferensesService> getInstance() async {
+  static Future<PreferensesService> getInstance() async {
     final box = await Hive.openBox<bool>(_boxKey);
     return PreferensesService._(box);
   }

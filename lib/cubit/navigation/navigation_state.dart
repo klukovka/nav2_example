@@ -1,5 +1,6 @@
 part of 'navigation_cubit.dart';
 
+@singleton
 class NavigationState extends Equatable {
   final List<Set<Destination>> previousRoutes;
   final Set<Destination> currentRoute;
