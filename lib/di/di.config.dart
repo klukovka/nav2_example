@@ -13,6 +13,7 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import '../cubit/navigation/navigation_cubit.dart' as _i3;
+import '../cubit/splash_page/splash_page_cubit.dart' as _i5;
 import '../services/preferences_service.dart' as _i4;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -31,5 +32,7 @@ Future<_i1.GetIt> $configureDependencies(
     () => _i4.PreferensesService.getInstance(),
     preResolve: true,
   );
+  gh.factory<_i5.SplashPageCubit>(
+      () => _i5.SplashPageCubit(gh<_i4.PreferensesService>()));
   return getIt;
 }
