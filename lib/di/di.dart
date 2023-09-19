@@ -1,5 +1,5 @@
-import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:nav2_example/di/locator.dart';
 
 import 'di.config.dart';
 
@@ -8,6 +8,6 @@ import 'di.config.dart';
   preferRelativeImports: true,
   asExtension: false,
 )
-Future<void> configureDataDependencies(GetIt locator) async {
+Future<void> configureDependencies() async {
   await $configureDependencies(locator);
 }
