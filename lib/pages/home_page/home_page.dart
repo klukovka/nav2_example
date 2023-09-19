@@ -22,6 +22,13 @@ class _HomePageState extends State<HomePage> {
       builder: (context, state) {
         return Scaffold(
           body: Navigator(
+            onPopPage: (route, result) {
+              if (state.previousRoutes.isNotEmpty) {
+                cubit.closePage();
+                return false;
+              }
+              return true;
+            },
             pages: state.currentRoute.expand<Page>((destination) sync* {
               switch (destination) {
                 case Destination.home:

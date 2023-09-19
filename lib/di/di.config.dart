@@ -13,8 +13,7 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import '../cubit/navigation/navigation_cubit.dart' as _i3;
-import '../models/destination.dart' as _i4;
-import '../services/preferences_service.dart' as _i5;
+import '../services/preferences_service.dart' as _i4;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 Future<_i1.GetIt> $configureDependencies(
@@ -27,12 +26,9 @@ Future<_i1.GetIt> $configureDependencies(
     environment,
     environmentFilter,
   );
-  gh.singleton<_i3.NavigationState>(_i3.NavigationState(
-    previousRoutes: gh<List<Set<_i4.Destination>>>(),
-    currentRoute: gh<Set<_i4.Destination>>(),
-  ));
-  await gh.singletonAsync<_i5.PreferensesService>(
-    () => _i5.PreferensesService.getInstance(),
+  gh.singleton<_i3.NavigationCubit>(_i3.NavigationCubit());
+  await gh.singletonAsync<_i4.PreferensesService>(
+    () => _i4.PreferensesService.getInstance(),
     preResolve: true,
   );
   return getIt;

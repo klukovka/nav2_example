@@ -5,6 +5,7 @@ import 'package:nav2_example/models/destination.dart';
 
 part 'navigation_state.dart';
 
+@singleton
 class NavigationCubit extends Cubit<NavigationState> {
   NavigationCubit() : super(const NavigationState());
 
