@@ -70,6 +70,12 @@ class _HomePageState extends State<HomePage> {
                         Destination.settings => const Icon(Icons.settings),
                         _ => const Icon(Icons.error),
                       },
+                      label: switch (destination) {
+                        Destination.home => 'Home',
+                        Destination.contacts => 'Contacts',
+                        Destination.settings => 'Settings',
+                        _ => '',
+                      },
                     ))
                 .toList(),
           ),

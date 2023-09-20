@@ -12,6 +12,7 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
+import '../cubit/login_page/login_page_cubit.dart' as _i6;
 import '../cubit/navigation/navigation_cubit.dart' as _i3;
 import '../cubit/splash_page/splash_page_cubit.dart' as _i5;
 import '../services/preferences_service.dart' as _i4;
@@ -34,5 +35,7 @@ Future<_i1.GetIt> $configureDependencies(
   );
   gh.factory<_i5.SplashPageCubit>(
       () => _i5.SplashPageCubit(gh<_i4.PreferensesService>()));
+  gh.factory<_i6.LoginPageCubit>(
+      () => _i6.LoginPageCubit(gh<_i4.PreferensesService>()));
   return getIt;
 }

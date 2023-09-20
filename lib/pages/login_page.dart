@@ -1,10 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nav2_example/cubit/login_page/login_page_cubit.dart';
+import 'package:nav2_example/cubit/navigation/navigation_cubit.dart';
+import 'package:nav2_example/di/locator.dart';
+import 'package:nav2_example/models/destination.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return BlocProvider(
+      create: (context) => locator<LoginPageCubit>(),
+      child: BlocConsumer<LoginPageCubit, LoginPageState>(
+        listener: (context, state) {
+          if (state.status == LoginPageStatus.success) {
+            context.read<NavigationCubit>().replaceRoute({
+              Destination.home,
+            });
+          }
+        },
+        builder: (context, state) {
+          return Scaffold(
+            appBar: AppBar(title: const Text('Login')),
+            body: Center(
+              child: state.status == LoginPageStatus.loading
+                  ? const CircularProgressIndicator.adaptive()
+                  : ElevatedButton(
+                      onPressed: context.read<LoginPageCubit>().login,
+                      child: const Text('Press to Login'),
+                    ),
+            ),
+          );
+        },
+      ),
+    );
   }
 }
