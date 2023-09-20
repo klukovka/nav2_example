@@ -16,7 +16,8 @@ class SplashPageCubit extends Cubit<SplashPageState> {
     init();
   }
 
-  void init() {
+  void init() async {
+    await Future.delayed(const Duration(milliseconds: 1000));
     emit(state.copyWith(
       status: _preferensesService.isLoggedIn
           ? SplashPageStatus.authorized
