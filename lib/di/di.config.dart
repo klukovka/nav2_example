@@ -12,9 +12,10 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../cubit/login_page/login_page_cubit.dart' as _i6;
+import '../cubit/login_page/login_page_cubit.dart' as _i7;
 import '../cubit/navigation/navigation_cubit.dart' as _i3;
-import '../cubit/splash_page/splash_page_cubit.dart' as _i5;
+import '../cubit/settings_page/settings_page_cubit.dart' as _i5;
+import '../cubit/splash_page/splash_page_cubit.dart' as _i6;
 import '../services/preferences_service.dart' as _i4;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -33,9 +34,11 @@ Future<_i1.GetIt> $configureDependencies(
     () => _i4.PreferensesService.getInstance(),
     preResolve: true,
   );
-  gh.factory<_i5.SplashPageCubit>(
-      () => _i5.SplashPageCubit(gh<_i4.PreferensesService>()));
-  gh.factory<_i6.LoginPageCubit>(
-      () => _i6.LoginPageCubit(gh<_i4.PreferensesService>()));
+  gh.factory<_i5.SettingsPageCubit>(
+      () => _i5.SettingsPageCubit(gh<_i4.PreferensesService>()));
+  gh.factory<_i6.SplashPageCubit>(
+      () => _i6.SplashPageCubit(gh<_i4.PreferensesService>()));
+  gh.factory<_i7.LoginPageCubit>(
+      () => _i7.LoginPageCubit(gh<_i4.PreferensesService>()));
   return getIt;
 }

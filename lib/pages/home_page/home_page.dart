@@ -20,6 +20,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationCubit, NavigationState>(
       builder: (context, state) {
+        final currentIndex = Destination.loggedInPages.indexWhere(
+          (element) => state.currentRoute.contains(element),
+        );
         return Scaffold(
           body: Navigator(
             onPopPage: (route, result) {
@@ -59,9 +62,7 @@ class _HomePageState extends State<HomePage> {
               final destination = Destination.loggedInPages[value];
               cubit.replaceRoute({destination});
             },
-            currentIndex: Destination.loggedInPages.indexWhere(
-              (element) => state.currentRoute.contains(element),
-            ),
+            currentIndex: currentIndex != -1 ? currentIndex : 0,
             items: Destination.loggedInPages
                 .map((destination) => BottomNavigationBarItem(
                       icon: switch (destination) {
