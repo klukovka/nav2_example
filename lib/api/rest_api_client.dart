@@ -17,11 +17,11 @@ abstract class RestApiClient {
 
   @GET('/posts/{postId}')
   Future<Post> getPost(
-    @Path('postId') String postId,
+    @Path('postId') int postId,
   );
 
   @GET('/posts/{postId}/comments')
   Future<List<Comment>> getCommentsForPost(
-    @Path('postId') String postId,
+    @Path('postId') int postId,
   );
 }

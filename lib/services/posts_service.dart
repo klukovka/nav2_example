@@ -17,7 +17,7 @@ class PostsService {
     }
   }
 
-  Future<Post> getPost(String postId) async {
+  Future<Post> getPost(int postId) async {
     try {
       return await _apiClient.getPost(postId);
     } catch (_) {
@@ -25,7 +25,7 @@ class PostsService {
     }
   }
 
-  Future<List<Comment>> getCommentsForPost(String postId) async {
+  Future<List<Comment>> getCommentsForPost(int postId) async {
     try {
       return await _apiClient.getCommentsForPost(postId);
     } catch (_) {

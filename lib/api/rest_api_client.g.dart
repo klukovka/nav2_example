@@ -50,7 +50,7 @@ class _RestApiClient implements RestApiClient {
   }
 
   @override
-  Future<Post> getPost(String postId) async {
+  Future<Post> getPost(int postId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -77,7 +77,7 @@ class _RestApiClient implements RestApiClient {
   }
 
   @override
-  Future<List<Comment>> getCommentsForPost(String postId) async {
+  Future<List<Comment>> getCommentsForPost(int postId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
