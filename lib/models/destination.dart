@@ -2,12 +2,12 @@ enum Destination {
   splash,
   login,
   home,
-  contacts,
+  posts,
   settings;
 
   static List<Destination> get loggedInPages => [
         Destination.home,
-        Destination.contacts,
+        Destination.posts,
         Destination.settings,
       ];
 }

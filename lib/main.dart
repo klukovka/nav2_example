@@ -48,7 +48,7 @@ class NavApp extends StatelessWidget {
                     );
                     break;
                   case Destination.home:
-                  case Destination.contacts:
+                  case Destination.posts:
                   case Destination.settings:
                     yield const MaterialPage(
                       key: ValueKey(Destination.home),

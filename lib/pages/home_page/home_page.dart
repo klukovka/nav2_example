@@ -40,10 +40,10 @@ class _HomePageState extends State<HomePage> {
                     child: HomeTab(),
                   );
                   break;
-                case Destination.contacts:
+                case Destination.posts:
                   yield const MaterialPage(
-                    key: ValueKey(Destination.contacts),
-                    child: ContactsTab(),
+                    key: ValueKey(Destination.posts),
+                    child: PostsTab(),
                   );
                   break;
                 case Destination.settings:
@@ -67,13 +67,13 @@ class _HomePageState extends State<HomePage> {
                 .map((destination) => BottomNavigationBarItem(
                       icon: switch (destination) {
                         Destination.home => const Icon(Icons.home),
-                        Destination.contacts => const Icon(Icons.contacts),
+                        Destination.posts => const Icon(Icons.contacts),
                         Destination.settings => const Icon(Icons.settings),
                         _ => const Icon(Icons.error),
                       },
                       label: switch (destination) {
                         Destination.home => 'Home',
-                        Destination.contacts => 'Contacts',
+                        Destination.posts => 'Contacts',
                         Destination.settings => 'Settings',
                         _ => '',
                       },
