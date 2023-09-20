@@ -6,21 +6,21 @@ import 'package:nav2_example/services/preferences_service.dart';
 part 'settings_page_state.dart';
 
 @injectable
-class SettingsPageCubit extends Cubit<SettingsPageState> {
+class SettingsTabCubit extends Cubit<SettingsTabState> {
   final PreferensesService _preferensesService;
 
-  SettingsPageCubit(
+  SettingsTabCubit(
     this._preferensesService,
-  ) : super(const SettingsPageState());
+  ) : super(const SettingsTabState());
 
   Future<void> logout() async {
-    emit(state.copyWith(status: SettingsPageStatus.loading));
+    emit(state.copyWith(status: SettingsTabStatus.loading));
     await _preferensesService.logout();
 
     emit(state.copyWith(
       status: _preferensesService.isLoggedIn
-          ? SettingsPageStatus.error
-          : SettingsPageStatus.success,
+          ? SettingsTabStatus.error
+          : SettingsTabStatus.success,
     ));
   }
 }
