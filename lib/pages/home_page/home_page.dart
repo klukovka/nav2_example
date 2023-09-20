@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nav2_example/cubit/navigation/navigation_cubit.dart';
 import 'package:nav2_example/models/destination.dart';
-import 'package:nav2_example/pages/home_page/tabs/contacts_tab.dart';
 import 'package:nav2_example/pages/home_page/tabs/home_tab.dart';
+import 'package:nav2_example/pages/home_page/tabs/posts_tab.dart';
 import 'package:nav2_example/pages/home_page/tabs/settings_tab.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,38 +24,40 @@ class _HomePageState extends State<HomePage> {
           (element) => state.currentRoute.contains(element),
         );
         return Scaffold(
-          body: Navigator(
-            onPopPage: (route, result) {
-              if (state.previousRoutes.isNotEmpty) {
-                cubit.closePage();
-                return false;
-              }
-              return true;
-            },
-            pages: state.currentRoute.expand<Page>((destination) sync* {
-              switch (destination) {
-                case Destination.home:
-                  yield const MaterialPage(
-                    key: ValueKey(Destination.home),
-                    child: HomeTab(),
-                  );
-                  break;
-                case Destination.posts:
-                  yield const MaterialPage(
-                    key: ValueKey(Destination.posts),
-                    child: PostsTab(),
-                  );
-                  break;
-                case Destination.settings:
-                  yield const MaterialPage(
-                    key: ValueKey(Destination.settings),
-                    child: SettingsTab(),
-                  );
-                  break;
-                default:
-                  break;
-              }
-            }).toList(),
+          body: SafeArea(
+            child: Navigator(
+              onPopPage: (route, result) {
+                if (state.previousRoutes.isNotEmpty) {
+                  cubit.closePage();
+                  return false;
+                }
+                return true;
+              },
+              pages: state.currentRoute.expand<Page>((destination) sync* {
+                switch (destination) {
+                  case Destination.home:
+                    yield const MaterialPage(
+                      key: ValueKey(Destination.home),
+                      child: HomeTab(),
+                    );
+                    break;
+                  case Destination.posts:
+                    yield const MaterialPage(
+                      key: ValueKey(Destination.posts),
+                      child: PostsTab(),
+                    );
+                    break;
+                  case Destination.settings:
+                    yield const MaterialPage(
+                      key: ValueKey(Destination.settings),
+                      child: SettingsTab(),
+                    );
+                    break;
+                  default:
+                    break;
+                }
+              }).toList(),
+            ),
           ),
           bottomNavigationBar: BottomNavigationBar(
             onTap: (value) {
