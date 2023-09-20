@@ -16,6 +16,11 @@ class LoginPageCubit extends Cubit<LoginPageState> {
   Future<void> login() async {
     emit(state.copyWith(status: LoginPageStatus.loading));
     await _preferensesService.login();
-    emit(state.copyWith(status: LoginPageStatus.success));
+
+    emit(state.copyWith(
+      status: _preferensesService.isLoggedIn
+          ? LoginPageStatus.success
+          : LoginPageStatus.error,
+    ));
   }
 }

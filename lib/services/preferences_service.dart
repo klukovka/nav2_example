@@ -17,13 +17,13 @@ class PreferensesService {
     return PreferensesService._(box);
   }
 
-  bool get isLoggedIn => _box.get(_boxKey) ?? false;
+  bool get isLoggedIn => _box.get(_loggedInKey) ?? false;
 
   Future<void> login() async {
     await _box.put(_loggedInKey, true);
   }
 
   Future<void> logout() async {
-    await _box.put(_loggedInKey, false);
+    await _box.delete(_loggedInKey);
   }
 }

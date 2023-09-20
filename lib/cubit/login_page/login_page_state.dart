@@ -4,6 +4,7 @@ enum LoginPageStatus {
   idle,
   loading,
   success,
+  error,
 }
 
 class LoginPageState extends Equatable {

@@ -14,10 +14,17 @@ class LoginPage extends StatelessWidget {
       create: (context) => locator<LoginPageCubit>(),
       child: BlocConsumer<LoginPageCubit, LoginPageState>(
         listener: (context, state) {
-          if (state.status == LoginPageStatus.success) {
-            context.read<NavigationCubit>().replaceRoute({
-              Destination.home,
-            });
+          switch (state.status) {
+            case LoginPageStatus.success:
+              context.read<NavigationCubit>().replaceRoute({
+                Destination.home,
+              });
+              break;
+            case LoginPageStatus.error:
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text('Failed to Login'),
+              ));
+            default:
           }
         },
         builder: (context, state) {
