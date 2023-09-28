@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:nav2_example/di/locator.dart';
+import 'package:nav2_example/config/di/locator.dart';
 
 import 'di.config.dart';
 

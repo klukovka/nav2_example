@@ -13,15 +13,15 @@ import 'package:dio/dio.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../api/rest_api_client.dart' as _i6;
-import '../cubit/login_page/login_page_cubit.dart' as _i9;
-import '../cubit/navigation/navigation_cubit.dart' as _i4;
-import '../cubit/post_comments_page/post_comments_page_cubit.dart' as _i12;
-import '../cubit/posts_tab/posts_tab_cubit.dart' as _i11;
-import '../cubit/settings_tab/settings_page_cubit.dart' as _i7;
-import '../cubit/splash_page/splash_page_cubit.dart' as _i8;
-import '../services/posts_service.dart' as _i10;
-import '../services/preferences_service.dart' as _i5;
+import '../../api/rest_api_client.dart' as _i6;
+import '../../cubit/login_page/login_page_cubit.dart' as _i9;
+import '../../cubit/navigation/navigation_cubit.dart' as _i4;
+import '../../cubit/post_comments_page/post_comments_page_cubit.dart' as _i12;
+import '../../cubit/posts_tab/posts_tab_cubit.dart' as _i11;
+import '../../cubit/settings_tab/settings_page_cubit.dart' as _i7;
+import '../../cubit/splash_page/splash_page_cubit.dart' as _i8;
+import '../../services/posts_service.dart' as _i10;
+import '../../services/preferences_service.dart' as _i5;
 import 'modules/api_module.dart' as _i13;
 
 // initializes the registration of main-scope dependencies inside of GetIt
