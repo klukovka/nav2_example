@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nav2_example/config/di/locator.dart';
-import 'package:nav2_example/cubit/navigation/navigation_cubit.dart';
+import 'package:nav2_example/cubit/navigation/navigation_bloc.dart';
 import 'package:nav2_example/cubit/settings_tab/settings_page_cubit.dart';
 import 'package:nav2_example/models/destination.dart';
 
@@ -16,9 +16,9 @@ class SettingsTab extends StatelessWidget {
         listener: (context, state) {
           switch (state.status) {
             case SettingsTabStatus.success:
-              context.read<NavigationCubit>().replaceRoute({
-                Destination.login,
-              });
+              context.read<NavigationBloc>().add(
+                    const ReplaceRouteNavigationEvent({Destination.login}),
+                  );
               break;
             case SettingsTabStatus.error:
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

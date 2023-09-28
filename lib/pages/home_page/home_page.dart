@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nav2_example/cubit/navigation/navigation_cubit.dart';
+import 'package:nav2_example/cubit/navigation/navigation_bloc.dart';
 import 'package:nav2_example/models/destination.dart';
 import 'package:nav2_example/pages/home_page/tabs/home_tab.dart';
 import 'package:nav2_example/pages/home_page/tabs/posts_tab.dart';
@@ -14,11 +14,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  NavigationCubit get cubit => context.read();
+  NavigationBloc get bloc => context.read();
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NavigationCubit, NavigationState>(
+    return BlocBuilder<NavigationBloc, NavigationState>(
       builder: (context, state) {
         final currentIndex = Destination.loggedInPages.indexWhere(
           (element) => state.currentRoute.contains(element),
@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
             child: Navigator(
               onPopPage: (route, result) {
                 if (state.previousRoutes.isNotEmpty) {
-                  cubit.closePage();
+                  bloc.add(const ClosePageNavigationEvent());
                   return false;
                 }
                 return true;
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
           bottomNavigationBar: BottomNavigationBar(
             onTap: (value) {
               final destination = Destination.loggedInPages[value];
-              cubit.replaceRoute({destination});
+              bloc.add(ReplaceRouteNavigationEvent({destination}));
             },
             currentIndex: currentIndex != -1 ? currentIndex : 0,
             items: Destination.loggedInPages

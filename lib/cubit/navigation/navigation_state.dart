@@ -1,4 +1,4 @@
-part of 'navigation_cubit.dart';
+part of 'navigation_bloc.dart';
 
 class NavigationState extends Equatable {
   final List<Set<Destination>> previousRoutes;

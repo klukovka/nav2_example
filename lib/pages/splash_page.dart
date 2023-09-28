@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nav2_example/config/di/locator.dart';
-import 'package:nav2_example/cubit/navigation/navigation_cubit.dart';
+import 'package:nav2_example/cubit/navigation/navigation_bloc.dart';
 import 'package:nav2_example/cubit/splash_page/splash_page_cubit.dart';
 import 'package:nav2_example/models/destination.dart';
 
@@ -14,13 +14,13 @@ class SplashPage extends StatelessWidget {
       create: (context) => locator<SplashPageCubit>(),
       child: BlocListener<SplashPageCubit, SplashPageState>(
         listener: (context, state) {
-          final cubit = context.read<NavigationCubit>();
+          final cubit = context.read<NavigationBloc>();
           switch (state.status) {
             case SplashPageStatus.authorized:
-              cubit.replaceRoute({Destination.home});
+              cubit.add(const ReplaceRouteNavigationEvent({Destination.home}));
               break;
             case SplashPageStatus.unauthorized:
-              cubit.replaceRoute({Destination.login});
+              cubit.add(const ReplaceRouteNavigationEvent({Destination.login}));
               break;
             default:
               break;

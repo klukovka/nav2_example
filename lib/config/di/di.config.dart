@@ -15,7 +15,7 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import '../../api/rest_api_client.dart' as _i6;
 import '../../cubit/login_page/login_page_cubit.dart' as _i9;
-import '../../cubit/navigation/navigation_cubit.dart' as _i4;
+import '../../cubit/navigation/navigation_bloc.dart' as _i4;
 import '../../cubit/post_comments_page/post_comments_page_cubit.dart' as _i12;
 import '../../cubit/posts_tab/posts_tab_cubit.dart' as _i11;
 import '../../cubit/settings_tab/settings_page_cubit.dart' as _i7;
@@ -37,7 +37,7 @@ Future<_i1.GetIt> $configureDependencies(
   );
   final apiModule = _$ApiModule();
   gh.lazySingleton<_i3.Dio>(() => apiModule.dio());
-  gh.singleton<_i4.NavigationCubit>(_i4.NavigationCubit());
+  gh.singleton<_i4.NavigationBloc>(_i4.NavigationBloc());
   await gh.singletonAsync<_i5.PreferensesService>(
     () => _i5.PreferensesService.getInstance(),
     preResolve: true,

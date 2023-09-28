@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nav2_example/config/di/locator.dart';
 import 'package:nav2_example/cubit/login_page/login_page_cubit.dart';
-import 'package:nav2_example/cubit/navigation/navigation_cubit.dart';
+import 'package:nav2_example/cubit/navigation/navigation_bloc.dart';
 import 'package:nav2_example/models/destination.dart';
 
 class LoginPage extends StatelessWidget {
@@ -16,9 +16,11 @@ class LoginPage extends StatelessWidget {
         listener: (context, state) {
           switch (state.status) {
             case LoginPageStatus.success:
-              context.read<NavigationCubit>().replaceRoute({
-                Destination.home,
-              });
+              context.read<NavigationBloc>().add(
+                    const ReplaceRouteNavigationEvent({
+                      Destination.home,
+                    }),
+                  );
               break;
             case LoginPageStatus.error:
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
