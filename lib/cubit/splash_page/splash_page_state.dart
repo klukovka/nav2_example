@@ -1,4 +1,4 @@
-part of 'splash_page_cubit.dart';
+part of 'splash_page_bloc.dart';
 
 enum SplashPageStatus {
   loading,
