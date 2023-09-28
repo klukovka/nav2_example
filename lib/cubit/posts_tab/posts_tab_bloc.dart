@@ -4,19 +4,21 @@ import 'package:injectable/injectable.dart';
 import 'package:nav2_example/models/post.dart';
 import 'package:nav2_example/services/posts_service.dart';
 
+part 'posts_tab_event.dart';
 part 'posts_tab_state.dart';
 
 @injectable
-class PostsTabCubit extends Cubit<PostsTabState> {
+class PostsTabBloc extends Bloc<PostsTabEvent, PostsTabState> {
   final PostsService _postsService;
 
-  PostsTabCubit(
-    this._postsService,
-  ) : super(const PostsTabState()) {
-    upload();
+  PostsTabBloc(this._postsService) : super(const PostsTabState()) {
+    on<UploadPostsTabEvent>(upload);
   }
 
-  Future<void> upload() async {
+  Future<void> upload(
+    UploadPostsTabEvent event,
+    Emitter<PostsTabState> emit,
+  ) async {
     emit(state.copyWith(status: PostsTabStatus.loading));
     try {
       final posts = await _postsService.getPosts();

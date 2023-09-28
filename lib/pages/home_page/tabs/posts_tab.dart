@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nav2_example/config/di/locator.dart';
-import 'package:nav2_example/cubit/posts_tab/posts_tab_cubit.dart';
+import 'package:nav2_example/cubit/posts_tab/posts_tab_bloc.dart';
 import 'package:nav2_example/pages/home_page/views/post_tile.dart';
 
 class PostsTab extends StatelessWidget {
@@ -10,8 +10,8 @@ class PostsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => locator<PostsTabCubit>(),
-      child: BlocBuilder<PostsTabCubit, PostsTabState>(
+      create: (context) => locator<PostsTabBloc>()..add(UploadPostsTabEvent()),
+      child: BlocBuilder<PostsTabBloc, PostsTabState>(
         builder: (context, state) {
           return switch (state.status) {
             PostsTabStatus.loading => const Center(
@@ -35,7 +35,9 @@ class PostsTab extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     IconButton(
-                      onPressed: context.read<PostsTabCubit>().upload,
+                      onPressed: () => context
+                          .read<PostsTabBloc>()
+                          .add(UploadPostsTabEvent()),
                       icon: const Icon(Icons.replay_outlined),
                     ),
                     const SizedBox(height: 12),

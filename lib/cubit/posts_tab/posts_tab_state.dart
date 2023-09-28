@@ -1,4 +1,4 @@
-part of 'posts_tab_cubit.dart';
+part of 'posts_tab_bloc.dart';
 
 enum PostsTabStatus {
   loading,
