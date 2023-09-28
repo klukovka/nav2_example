@@ -14,7 +14,7 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import '../../api/rest_api_client.dart' as _i6;
-import '../../cubit/login_page/login_page_cubit.dart' as _i9;
+import '../../cubit/login_page/login_page_bloc.dart' as _i9;
 import '../../cubit/navigation/navigation_bloc.dart' as _i4;
 import '../../cubit/post_comments_page/post_comments_page_cubit.dart' as _i12;
 import '../../cubit/posts_tab/posts_tab_cubit.dart' as _i11;
@@ -47,8 +47,8 @@ Future<_i1.GetIt> $configureDependencies(
       () => _i7.SettingsTabCubit(gh<_i5.PreferensesService>()));
   gh.factory<_i8.SplashPageCubit>(
       () => _i8.SplashPageCubit(gh<_i5.PreferensesService>()));
-  gh.factory<_i9.LoginPageCubit>(
-      () => _i9.LoginPageCubit(gh<_i5.PreferensesService>()));
+  gh.factory<_i9.LoginPageBloc>(
+      () => _i9.LoginPageBloc(gh<_i5.PreferensesService>()));
   gh.lazySingleton<_i10.PostsService>(
       () => _i10.PostsService(gh<_i6.RestApiClient>()));
   gh.factory<_i11.PostsTabCubit>(

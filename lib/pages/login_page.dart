@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nav2_example/config/di/locator.dart';
-import 'package:nav2_example/cubit/login_page/login_page_cubit.dart';
+import 'package:nav2_example/cubit/login_page/login_page_bloc.dart';
 import 'package:nav2_example/cubit/navigation/navigation_bloc.dart';
 import 'package:nav2_example/models/destination.dart';
 
@@ -11,8 +11,8 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => locator<LoginPageCubit>(),
-      child: BlocConsumer<LoginPageCubit, LoginPageState>(
+      create: (context) => locator<LoginPageBloc>(),
+      child: BlocConsumer<LoginPageBloc, LoginPageState>(
         listener: (context, state) {
           switch (state.status) {
             case LoginPageStatus.success:
@@ -36,7 +36,8 @@ class LoginPage extends StatelessWidget {
               child: state.status == LoginPageStatus.loading
                   ? const CircularProgressIndicator.adaptive()
                   : ElevatedButton(
-                      onPressed: context.read<LoginPageCubit>().login,
+                      onPressed: () =>
+                          context.read<LoginPageBloc>().add(LoginEvent()),
                       child: const Text('Press to Login'),
                     ),
             ),

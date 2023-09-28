@@ -1,4 +1,4 @@
-part of 'login_page_cubit.dart';
+part of 'login_page_bloc.dart';
 
 enum LoginPageStatus {
   idle,
