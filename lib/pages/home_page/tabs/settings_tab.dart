@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nav2_example/config/di/locator.dart';
 import 'package:nav2_example/cubit/navigation/navigation_bloc.dart';
-import 'package:nav2_example/cubit/settings_tab/settings_page_cubit.dart';
+import 'package:nav2_example/cubit/settings_tab/settings_tab_bloc.dart';
 import 'package:nav2_example/models/destination.dart';
 
 class SettingsTab extends StatelessWidget {
@@ -11,8 +11,8 @@ class SettingsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => locator<SettingsTabCubit>(),
-      child: BlocConsumer<SettingsTabCubit, SettingsTabState>(
+      create: (context) => locator<SettingsTabBloc>(),
+      child: BlocConsumer<SettingsTabBloc, SettingsTabState>(
         listener: (context, state) {
           switch (state.status) {
             case SettingsTabStatus.success:
@@ -32,7 +32,9 @@ class SettingsTab extends StatelessWidget {
             child: state.status == SettingsTabStatus.loading
                 ? const CircularProgressIndicator.adaptive()
                 : ElevatedButton(
-                    onPressed: context.read<SettingsTabCubit>().logout,
+                    onPressed: () => context
+                        .read<SettingsTabBloc>()
+                        .add(LogoutSettingsTabEvent()),
                     child: const Text('Press to Logout'),
                   ),
           );

@@ -1,4 +1,4 @@
-part of 'settings_page_cubit.dart';
+part of 'settings_tab_bloc.dart';
 
 enum SettingsTabStatus {
   idle,

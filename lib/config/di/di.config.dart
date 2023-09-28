@@ -18,7 +18,7 @@ import '../../cubit/login_page/login_page_bloc.dart' as _i9;
 import '../../cubit/navigation/navigation_bloc.dart' as _i4;
 import '../../cubit/post_comments_page/post_comments_page_cubit.dart' as _i12;
 import '../../cubit/posts_tab/posts_tab_cubit.dart' as _i11;
-import '../../cubit/settings_tab/settings_page_cubit.dart' as _i7;
+import '../../cubit/settings_tab/settings_tab_bloc.dart' as _i7;
 import '../../cubit/splash_page/splash_page_bloc.dart' as _i8;
 import '../../services/posts_service.dart' as _i10;
 import '../../services/preferences_service.dart' as _i5;
@@ -43,8 +43,8 @@ Future<_i1.GetIt> $configureDependencies(
     preResolve: true,
   );
   gh.lazySingleton<_i6.RestApiClient>(() => apiModule.apiClient(gh<_i3.Dio>()));
-  gh.factory<_i7.SettingsTabCubit>(
-      () => _i7.SettingsTabCubit(gh<_i5.PreferensesService>()));
+  gh.factory<_i7.SettingsTabBloc>(
+      () => _i7.SettingsTabBloc(gh<_i5.PreferensesService>()));
   gh.factory<_i8.SplashPageBloc>(
       () => _i8.SplashPageBloc(gh<_i5.PreferensesService>()));
   gh.factory<_i9.LoginPageBloc>(
