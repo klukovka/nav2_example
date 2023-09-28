@@ -1,4 +1,4 @@
-part of 'post_comments_page_cubit.dart';
+part of 'post_comments_page_bloc.dart';
 
 enum PostCommentsPageStatus {
   loading,

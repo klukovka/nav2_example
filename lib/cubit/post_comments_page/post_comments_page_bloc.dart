@@ -5,26 +5,27 @@ import 'package:nav2_example/models/comment.dart';
 import 'package:nav2_example/models/post.dart';
 import 'package:nav2_example/services/posts_service.dart';
 
+part 'post_comments_page_event.dart';
 part 'post_comments_page_state.dart';
 
 @injectable
-class PostCommentsPageCubit extends Cubit<PostCommentsPageState> {
+class PostCommentsPageBloc
+    extends Bloc<PostCommentsPageEvent, PostCommentsPageState> {
   final PostsService _postsService;
-  late final int _postId;
 
-  PostCommentsPageCubit(
-    this._postsService,
-    @factoryParam int? postId,
-  ) : super(const PostCommentsPageState()) {
-    _postId = postId!;
-    upload();
+  PostCommentsPageBloc(this._postsService)
+      : super(const PostCommentsPageState()) {
+    on<UploadPostCommentsPageEvent>(upload);
   }
 
-  Future<void> upload() async {
+  Future<void> upload(
+    UploadPostCommentsPageEvent event,
+    Emitter<PostCommentsPageState> emit,
+  ) async {
     emit(state.copyWith(status: PostCommentsPageStatus.loading));
     try {
-      final comments = await _postsService.getCommentsForPost(_postId);
-      final post = await _postsService.getPost(_postId);
+      final comments = await _postsService.getCommentsForPost(event.id);
+      final post = await _postsService.getPost(event.id);
       emit(state.copyWith(
         comments: comments,
         post: post,
