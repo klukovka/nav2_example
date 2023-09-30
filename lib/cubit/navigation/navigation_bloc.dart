@@ -12,6 +12,7 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
     on<OpenPageNavigationEvent>(openPage);
     on<ClosePageNavigationEvent>(closePage);
     on<ReplaceRouteNavigationEvent>(replaceRoute);
+    on<RestoreRouteEvent>(restoreState);
   }
 
   void openPage(
@@ -48,5 +49,12 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
       previousRoutes: event.previousRoutes ?? state.previousRoutes,
       currentRoute: event.route,
     ));
+  }
+
+  void restoreState(
+    RestoreRouteEvent event,
+    Emitter<NavigationState> emit,
+  ) {
+    emit(event.state);
   }
 }

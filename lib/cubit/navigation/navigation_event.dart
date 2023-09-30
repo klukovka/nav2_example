@@ -34,3 +34,12 @@ class ReplaceRouteNavigationEvent extends NavigationEvent {
   @override
   List<Object?> get props => [route, previousRoutes];
 }
+
+class RestoreRouteEvent extends NavigationEvent {
+  final NavigationState state;
+
+  const RestoreRouteEvent(this.state);
+
+  @override
+  List<Object?> get props => [state];
+}
