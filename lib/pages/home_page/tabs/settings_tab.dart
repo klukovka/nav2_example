@@ -17,7 +17,7 @@ class SettingsTab extends StatelessWidget {
           switch (state.status) {
             case SettingsTabStatus.success:
               context.read<NavigationBloc>().add(
-                    const ReplaceRouteNavigationEvent(LoginRoute.path),
+                    const ClearAndOpenRouteNavigationEvent(LoginRoute.path),
                   );
               break;
             case SettingsTabStatus.error:

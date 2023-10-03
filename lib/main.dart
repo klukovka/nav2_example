@@ -28,6 +28,8 @@ class NavApp extends StatelessWidget {
         return MaterialApp.router(
           routerDelegate: AppRouterDelegate(context.read<NavigationBloc>()),
           routeInformationParser: AppRouteInformationParser(),
+          backButtonDispatcher: RootBackButtonDispatcher(),
+          debugShowCheckedModeBanner: false,
         );
       }),
     );

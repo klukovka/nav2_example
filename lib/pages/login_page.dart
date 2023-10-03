@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
         switch (state.status) {
           case LoginPageStatus.success:
             context.read<NavigationBloc>().add(
-                  const ReplaceRouteNavigationEvent(HomeRoute.path),
+                  const ClearAndOpenRouteNavigationEvent(HomeRoute.path),
                 );
             break;
           case LoginPageStatus.error:

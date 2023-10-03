@@ -15,10 +15,10 @@ class SplashPage extends StatelessWidget {
         final cubit = context.read<NavigationBloc>();
         switch (state.status) {
           case SplashPageStatus.authorized:
-            cubit.add(const ReplaceRouteNavigationEvent(HomeRoute.path));
+            cubit.add(const ClearAndOpenRouteNavigationEvent(HomeRoute.path));
             break;
           case SplashPageStatus.unauthorized:
-            cubit.add(const ReplaceRouteNavigationEvent(LoginRoute.path));
+            cubit.add(const ClearAndOpenRouteNavigationEvent(LoginRoute.path));
             break;
           default:
             break;
