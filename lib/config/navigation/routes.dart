@@ -3,6 +3,7 @@ import 'package:nav2_example/config/navigation/page_config.dart';
 import 'package:nav2_example/config/navigation/routes/home_route.dart';
 import 'package:nav2_example/config/navigation/routes/login_route.dart';
 import 'package:nav2_example/config/navigation/routes/not_found_route.dart';
+import 'package:nav2_example/config/navigation/routes/post_comment_route.dart';
 import 'package:nav2_example/config/navigation/routes/posts_route.dart';
 import 'package:nav2_example/config/navigation/routes/settings_route.dart';
 import 'package:nav2_example/config/navigation/routes/splash_route.dart';
@@ -21,4 +22,5 @@ Map<String, AppRoute Function(Map<String, dynamic>)> _routes = {
   HomeRoute.path: (args) => HomeRoute(args: args),
   PostsRoute.path: (args) => PostsRoute(args: args),
   SettingsRoute.path: (args) => SettingsRoute(args: args),
+  PostCommentRoute.path: (args) => PostCommentRoute(args: args),
 };

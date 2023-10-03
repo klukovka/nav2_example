@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nav2_example/bloc/login_page/login_page_bloc.dart';
 import 'package:nav2_example/bloc/navigation/navigation_bloc.dart';
+import 'package:nav2_example/bloc/post_comments_page/post_comments_page_bloc.dart';
 import 'package:nav2_example/bloc/splash_page/splash_page_bloc.dart';
 import 'package:nav2_example/config/di/locator.dart';
 import 'package:nav2_example/config/navigation/page_config.dart';
 import 'package:nav2_example/config/navigation/routes/home_route.dart';
 import 'package:nav2_example/config/navigation/routes/login_route.dart';
 import 'package:nav2_example/config/navigation/routes/not_found_route.dart';
+import 'package:nav2_example/config/navigation/routes/post_comment_route.dart';
 import 'package:nav2_example/config/navigation/routes/posts_route.dart';
 import 'package:nav2_example/config/navigation/routes/settings_route.dart';
 import 'package:nav2_example/config/navigation/routes/splash_route.dart';
 import 'package:nav2_example/pages/home_page/home_page.dart';
 import 'package:nav2_example/pages/login_page.dart';
 import 'package:nav2_example/pages/not_found_page.dart';
+import 'package:nav2_example/pages/post_comments_page/post_comments_page.dart';
 import 'package:nav2_example/pages/splash_page.dart';
 
 class AppRouterDelegate extends RouterDelegate<PageConfig>
@@ -53,6 +56,18 @@ class AppRouterDelegate extends RouterDelegate<PageConfig>
                   child: BlocProvider(
                     create: (context) => locator<LoginPageBloc>(),
                     child: const LoginPage(),
+                  ),
+                );
+                break;
+              case PostCommentRoute.path:
+                yield MaterialPage(
+                  key: const ValueKey(PostCommentRoute.path),
+                  child: BlocProvider(
+                    create: (context) => locator<PostCommentsPageBloc>()
+                      ..add(
+                        UploadPostCommentsPageEvent(element.args['id']),
+                      ),
+                    child: const PostCommentsPage(),
                   ),
                 );
                 break;

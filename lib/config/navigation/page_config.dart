@@ -23,9 +23,7 @@ class PageConfig extends Equatable {
     Map<String, dynamic>? args,
     this.name,
   }) {
-    uri = location.isNotEmpty
-        ? Uri(path: location, queryParameters: args)
-        : Uri.parse('/');
+    uri = location.isNotEmpty ? Uri.parse(location) : Uri.parse('/');
     route = uri.toString();
     this.args.addIfNotNull(args);
 

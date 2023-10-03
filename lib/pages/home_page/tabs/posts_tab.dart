@@ -19,8 +19,8 @@ class PostsTab extends StatelessWidget {
               ),
             PostsTabStatus.success => ListView.separated(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 16,
-                  horizontal: 24,
+                  vertical: 8,
+                  horizontal: 12,
                 ),
                 itemBuilder: (context, index) => PostTile(
                   post: state.posts[index],
