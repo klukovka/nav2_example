@@ -12,3 +12,10 @@ class UploadPostCommentsPageEvent extends PostCommentsPageEvent {
   @override
   List<Object?> get props => [id];
 }
+
+class ReloadPostCommentsPageEvent extends PostCommentsPageEvent {
+  const ReloadPostCommentsPageEvent();
+
+  @override
+  List<Object?> get props => [];
+}
