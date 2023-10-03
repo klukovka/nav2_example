@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nav2_example/bloc/navigation/navigation_bloc.dart';
+import 'package:nav2_example/bloc/settings_tab/settings_tab_bloc.dart';
 import 'package:nav2_example/config/di/locator.dart';
-import 'package:nav2_example/cubit/navigation/navigation_bloc.dart';
-import 'package:nav2_example/cubit/settings_tab/settings_tab_bloc.dart';
 import 'package:nav2_example/models/destination.dart';
 
 class SettingsTab extends StatelessWidget {

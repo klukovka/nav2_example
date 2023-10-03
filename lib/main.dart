@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:nav2_example/bloc/navigation/navigation_bloc.dart';
 import 'package:nav2_example/config/di/di.dart';
 import 'package:nav2_example/config/di/locator.dart';
-import 'package:nav2_example/cubit/navigation/navigation_bloc.dart';
 import 'package:nav2_example/models/destination.dart';
 import 'package:nav2_example/pages/home_page/home_page.dart';
 import 'package:nav2_example/pages/login_page.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nav2_example/cubit/navigation/navigation_bloc.dart';
+import 'package:nav2_example/bloc/navigation/navigation_bloc.dart';
 import 'package:nav2_example/models/destination.dart';
 import 'package:nav2_example/pages/home_page/tabs/home_tab.dart';
 import 'package:nav2_example/pages/home_page/tabs/posts_tab.dart';
