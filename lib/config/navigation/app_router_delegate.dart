@@ -12,11 +12,13 @@ class AppRouterDelegate extends RouterDelegate<PageConfig>
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationBloc, NavigationState>(
-      builder: (context, stack) => Navigator(
-        pages: stack.pages,
-        key: navigatorKey,
-        onPopPage: (route, result) => _onPopPage.call(route, result),
-      ),
+      builder: (context, state) {
+        return Navigator(
+          pages: state.pages,
+          key: navigatorKey,
+          onPopPage: (route, result) => _onPopPage.call(route, result),
+        );
+      },
     );
   }
 

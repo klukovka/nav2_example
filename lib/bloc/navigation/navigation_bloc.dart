@@ -7,9 +7,9 @@ import 'package:nav2_example/config/navigation/page_config.dart';
 part 'navigation_event.dart';
 part 'navigation_state.dart';
 
-@singleton
+@injectable
 class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
-  NavigationBloc(List<PageConfig> initialPages)
+  NavigationBloc(@factoryParam List<PageConfig> initialPages)
       : super(NavigationState(initialPages)) {
     on<OpenPageNavigationEvent>(_openPage);
     on<ClosePageNavigationEvent>(_closePage);

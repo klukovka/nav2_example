@@ -38,8 +38,11 @@ Future<_i1.GetIt> $configureDependencies(
   );
   final apiModule = _$ApiModule();
   gh.lazySingleton<_i3.Dio>(() => apiModule.dio());
-  gh.singleton<_i4.NavigationBloc>(
-      _i4.NavigationBloc(gh<List<_i5.PageConfig>>()));
+  gh.factoryParam<_i4.NavigationBloc, List<_i5.PageConfig>, dynamic>((
+    initialPages,
+    _,
+  ) =>
+      _i4.NavigationBloc(initialPages));
   await gh.singletonAsync<_i6.PreferensesService>(
     () => _i6.PreferensesService.getInstance(),
     preResolve: true,

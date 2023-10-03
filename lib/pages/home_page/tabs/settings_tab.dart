@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nav2_example/bloc/navigation/navigation_bloc.dart';
 import 'package:nav2_example/bloc/settings_tab/settings_tab_bloc.dart';
 import 'package:nav2_example/config/di/locator.dart';
-import 'package:nav2_example/models/destination.dart';
+import 'package:nav2_example/config/navigation/routes/login_route.dart';
 
 class SettingsTab extends StatelessWidget {
   const SettingsTab({super.key});
@@ -17,7 +17,7 @@ class SettingsTab extends StatelessWidget {
           switch (state.status) {
             case SettingsTabStatus.success:
               context.read<NavigationBloc>().add(
-                    const ReplaceRouteNavigationEvent({Destination.login}),
+                    const ReplaceRouteNavigationEvent(LoginRoute.path),
                   );
               break;
             case SettingsTabStatus.error:

@@ -4,7 +4,7 @@ import 'package:nav2_example/config/navigation/routes.dart';
 
 class PageConfig extends Equatable {
   ///full path to the page
-  late final Uri path;
+  late final Uri uri;
 
   ///to make it easier to use the path with different interfaces
   late final String route;
@@ -23,21 +23,23 @@ class PageConfig extends Equatable {
     Map<String, dynamic>? args,
     this.name,
   }) {
-    path = location.isNotEmpty ? Uri.parse(location) : Uri.parse('/');
-    route = path.toString();
+    uri = location.isNotEmpty
+        ? Uri(path: location, queryParameters: args)
+        : Uri.parse('/');
+    route = uri.toString();
     this.args.addIfNotNull(args);
 
     ///get the page from defined pages
-    page = getEPage(this);
+    page = getRoute(this);
   }
 
   @override
   String toString() {
-    return 'PageConfig: path = $path, args = $args';
+    return 'PageConfig: path = $uri, args = $args';
   }
 
   @override
-  List<Object?> get props => [path, args];
+  List<Object?> get props => [uri, args];
 }
 
 ///An extension function to facilitate adding nullable Maps (I need it in other places, declared it here for clarity)
