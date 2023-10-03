@@ -13,16 +13,17 @@ import 'package:dio/dio.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../../api/rest_api_client.dart' as _i6;
-import '../../bloc/login_page/login_page_bloc.dart' as _i9;
+import '../../api/rest_api_client.dart' as _i7;
+import '../../bloc/login_page/login_page_bloc.dart' as _i10;
 import '../../bloc/navigation/navigation_bloc.dart' as _i4;
-import '../../bloc/post_comments_page/post_comments_page_bloc.dart' as _i12;
-import '../../bloc/posts_tab/posts_tab_bloc.dart' as _i11;
-import '../../bloc/settings_tab/settings_tab_bloc.dart' as _i7;
-import '../../bloc/splash_page/splash_page_bloc.dart' as _i8;
-import '../../services/posts_service.dart' as _i10;
-import '../../services/preferences_service.dart' as _i5;
-import 'modules/api_module.dart' as _i13;
+import '../../bloc/post_comments_page/post_comments_page_bloc.dart' as _i13;
+import '../../bloc/posts_tab/posts_tab_bloc.dart' as _i12;
+import '../../bloc/settings_tab/settings_tab_bloc.dart' as _i8;
+import '../../bloc/splash_page/splash_page_bloc.dart' as _i9;
+import '../../services/posts_service.dart' as _i11;
+import '../../services/preferences_service.dart' as _i6;
+import '../navigation/page_config.dart' as _i5;
+import 'modules/api_module.dart' as _i14;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 Future<_i1.GetIt> $configureDependencies(
@@ -37,25 +38,26 @@ Future<_i1.GetIt> $configureDependencies(
   );
   final apiModule = _$ApiModule();
   gh.lazySingleton<_i3.Dio>(() => apiModule.dio());
-  gh.singleton<_i4.NavigationBloc>(_i4.NavigationBloc());
-  await gh.singletonAsync<_i5.PreferensesService>(
-    () => _i5.PreferensesService.getInstance(),
+  gh.singleton<_i4.NavigationBloc>(
+      _i4.NavigationBloc(gh<List<_i5.PageConfig>>()));
+  await gh.singletonAsync<_i6.PreferensesService>(
+    () => _i6.PreferensesService.getInstance(),
     preResolve: true,
   );
-  gh.lazySingleton<_i6.RestApiClient>(() => apiModule.apiClient(gh<_i3.Dio>()));
-  gh.factory<_i7.SettingsTabBloc>(
-      () => _i7.SettingsTabBloc(gh<_i5.PreferensesService>()));
-  gh.factory<_i8.SplashPageBloc>(
-      () => _i8.SplashPageBloc(gh<_i5.PreferensesService>()));
-  gh.factory<_i9.LoginPageBloc>(
-      () => _i9.LoginPageBloc(gh<_i5.PreferensesService>()));
-  gh.lazySingleton<_i10.PostsService>(
-      () => _i10.PostsService(gh<_i6.RestApiClient>()));
-  gh.factory<_i11.PostsTabBloc>(
-      () => _i11.PostsTabBloc(gh<_i10.PostsService>()));
-  gh.factory<_i12.PostCommentsPageBloc>(
-      () => _i12.PostCommentsPageBloc(gh<_i10.PostsService>()));
+  gh.lazySingleton<_i7.RestApiClient>(() => apiModule.apiClient(gh<_i3.Dio>()));
+  gh.factory<_i8.SettingsTabBloc>(
+      () => _i8.SettingsTabBloc(gh<_i6.PreferensesService>()));
+  gh.factory<_i9.SplashPageBloc>(
+      () => _i9.SplashPageBloc(gh<_i6.PreferensesService>()));
+  gh.factory<_i10.LoginPageBloc>(
+      () => _i10.LoginPageBloc(gh<_i6.PreferensesService>()));
+  gh.lazySingleton<_i11.PostsService>(
+      () => _i11.PostsService(gh<_i7.RestApiClient>()));
+  gh.factory<_i12.PostsTabBloc>(
+      () => _i12.PostsTabBloc(gh<_i11.PostsService>()));
+  gh.factory<_i13.PostCommentsPageBloc>(
+      () => _i13.PostCommentsPageBloc(gh<_i11.PostsService>()));
   return getIt;
 }
 
-class _$ApiModule extends _i13.ApiModule {}
+class _$ApiModule extends _i14.ApiModule {}

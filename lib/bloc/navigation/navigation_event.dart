@@ -5,12 +5,13 @@ sealed class NavigationEvent extends Equatable {
 }
 
 class OpenPageNavigationEvent extends NavigationEvent {
-  final Destination route;
+  final String path;
+  final Map<String, dynamic>? args;
 
-  const OpenPageNavigationEvent(this.route);
+  const OpenPageNavigationEvent(this.path, [this.args]);
 
   @override
-  List<Object?> get props => [route];
+  List<Object?> get props => [path, args];
 }
 
 class ClosePageNavigationEvent extends NavigationEvent {
@@ -23,23 +24,31 @@ class ClosePageNavigationEvent extends NavigationEvent {
 }
 
 class ReplaceRouteNavigationEvent extends NavigationEvent {
-  final Set<Destination> route;
-  final List<Set<Destination>>? previousRoutes;
+  final String path;
+  final Map<String, dynamic>? args;
 
-  const ReplaceRouteNavigationEvent(
-    this.route, {
-    this.previousRoutes,
-  });
+  const ReplaceRouteNavigationEvent(this.path, [this.args]);
 
   @override
-  List<Object?> get props => [route, previousRoutes];
+  List<Object?> get props => [path, args];
 }
 
-class RestoreRouteEvent extends NavigationEvent {
-  final NavigationState state;
+class OpenBeneathRouteNavigationEvent extends NavigationEvent {
+  final String path;
+  final Map<String, dynamic>? args;
 
-  const RestoreRouteEvent(this.state);
+  const OpenBeneathRouteNavigationEvent(this.path, [this.args]);
 
   @override
-  List<Object?> get props => [state];
+  List<Object?> get props => [path, args];
+}
+
+class ClearAndOpenRouteNavigationEvent extends NavigationEvent {
+  final String path;
+  final Map<String, dynamic>? args;
+
+  const ClearAndOpenRouteNavigationEvent(this.path, [this.args]);
+
+  @override
+  List<Object?> get props => [path, args];
 }
